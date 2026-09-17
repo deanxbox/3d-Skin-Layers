@@ -145,7 +145,11 @@ public class CustomizableModelPart extends CustomModelPart implements Mesh {
     public void translateAndRotate(PoseStack poseStack) {
         if (x != 0 || y != 0 || z != 0)
             poseStack.translate(this.x / 16.0F, this.y / 16.0F, this.z / 16.0F);
-        //? if >= 1.19.3 {
+        //? if >= 26.3 {
+
+        if (this.xRot != 0.0F || this.yRot != 0.0F || this.zRot != 0.0F)
+            poseStack.mulPose((new Matrix4f()).rotationZYX(this.zRot, this.yRot, this.xRot));
+        //? } else if >= 1.19.3 {
 
         if (this.xRot != 0.0F || this.yRot != 0.0F || this.zRot != 0.0F)
             poseStack.mulPose((new Quaternionf()).rotationZYX(this.zRot, this.yRot, this.xRot));
